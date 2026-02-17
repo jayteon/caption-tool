@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Caption AI | Premium</title>
+    <title>Pro Caption AI | Premium (Demo Mode)</title>
     <style>
         :root {
             --bg: #0a0a0c;
@@ -13,6 +13,7 @@
             --glass: blur(20px);
             --text: #e2e8f0;
             --subtle: #64748b;
+            --success: #22c55e;
         }
 
         body {
@@ -52,21 +53,6 @@
             justify-content: center;
             font-size: 36px;
             box-shadow: 0 12px 25px rgba(168, 85, 247, 0.35);
-            position: relative;
-        }
-
-        #pro-badge {
-            display: none;
-            background: linear-gradient(90deg, var(--gold), #fcd34d);
-            color: #1f2937;
-            font-weight: 900;
-            padding: 8px 22px;
-            border-radius: 50px;
-            font-size: 11px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            letter-spacing: 1.2px;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
         }
 
         h1 {
@@ -78,9 +64,23 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .form-group { text-align: left; margin-bottom: 24px; }
-        label { font-size: 13px; color: var(--subtle); font-weight: 600; margin-bottom: 10px; display: block; }
-        .select-group { display: flex; gap: 12px; }
+        .form-group {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-size: 13px;
+            color: var(--subtle);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .select-group {
+            display: flex;
+            gap: 12px;
+        }
 
         select, textarea {
             width: 100%;
@@ -96,17 +96,53 @@
 
         .btn {
             width: 100%;
-            padding: 18px;
+            padding: 20px 24px;
             border-radius: 16px;
             font-weight: 800;
             cursor: pointer;
             border: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 16.5px;
+            font-size: 17px;
             text-transform: uppercase;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
         }
 
-        .btn-gen { background: var(--accent); color: white; margin-top: 12px; }
+        .btn-gen {
+            background: var(--accent);
+            color: white;
+        }
+
+        .payment-options {
+            margin-top: 32px;
+        }
+
+        .payment-options p {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .btn-paypal {
+            background: #0070ba;
+            color: white;
+        }
+
+        .btn-stripe {
+            background: #635bff;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
 
         #output-container {
             display: none;
@@ -124,10 +160,16 @@
             margin-bottom: 10px;
         }
 
-        #unlock-btn {
-            background: linear-gradient(90deg, var(--gold), #fcd34d);
-            color: #1e2937;
+        #pro-unlocked {
+            display: none;
             margin-top: 32px;
+            padding: 24px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            color: var(--success);
+            font-size: 18px;
+            font-weight: 700;
         }
 
         .toast {
@@ -144,7 +186,27 @@
             z-index: 10000;
         }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .benefits {
+            text-align: left;
+            max-width: 360px;
+            margin: 16px auto 24px;
+            padding-left: 20px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .trust {
+            font-size: 13px;
+            color: var(--subtle);
+            margin-top: 32px;
+            opacity: 0.8;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -153,7 +215,7 @@
 
 <div class="container">
     <div class="brand-logo">⚡</div>
-    <div id="pro-badge">PRO VERIFIED</div>
+
     <h1>Pro Caption AI</h1>
 
     <div class="form-group">
@@ -183,7 +245,38 @@
         <button class="btn" style="background:white; color:black; margin-top:15px;" onclick="copyAll()">📋 Copy All</button>
     </div>
 
-    <button id="unlock-btn" class="btn" onclick="activatePro()">Unlock Pro Hooks — $5</button>
+    <!-- Payment section (buttons still visible for video) -->
+    <div class="payment-options">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px;">
+            <span style="font-size: 24px; color: var(--gold);">🔒</span>
+            <p style="font-size: 18px; font-weight: 700; margin: 0; color: var(--gold);">Pro Features Unlocked</p>
+        </div>
+
+        <p>Unlock Pro Hooks — $5</p>
+
+        <ul class="benefits">
+            <li>Savage, professional & witty hooks</li>
+            <li>Unlimited generations</li>
+            <li>Instant access – no waiting</li>
+            <li>One-time payment</li>
+        </ul>
+
+        <button class="btn btn-paypal" onclick="simulatePayment()">
+            <span style="font-size: 20px; margin-right: 8px;">💳</span> Pay with PayPal
+        </button>
+        <button class="btn btn-stripe" onclick="simulatePayment()">
+            <span style="font-size: 20px; margin-right: 8px;">⚡</span> Pay with Card (Stripe)
+        </button>
+
+        <p class="trust">Secure payment • Instant access • No subscription</p>
+    </div>
+
+    <!-- This appears after "payment" in demo mode -->
+    <div id="pro-unlocked">
+        ✅ Pro access unlocked!<br>
+        Thank you for your $5 payment.<br>
+        You now have full access to premium hooks.
+    </div>
 </div>
 
 <script>
@@ -231,9 +324,15 @@
         notify("📋 Copied!");
     }
 
-    function activatePro() {
-        // DIRECT REDIRECT TO YOUR STRIPE LINK
-        window.location.href = 'https://buy.stripe.com/3cI00k3Rf8NZ8N79o19bO01';
+    function simulatePayment() {
+        // Show loading briefly
+        notify("Processing payment...");
+
+        setTimeout(() => {
+            // "Unlock" the pro section
+            document.getElementById('pro-unlocked').style.display = 'block';
+            notify("Payment successful! Pro unlocked ✅");
+        }, 1200);
     }
 </script>
 
