@@ -55,16 +55,6 @@
             position: relative;
         }
 
-        .brand-logo::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2), transparent);
-            border-radius: 26px;
-            animation: shine 4s linear infinite;
-            opacity: 0.6;
-        }
-
         #pro-badge {
             display: none;
             background: linear-gradient(90deg, var(--gold), #fcd34d);
@@ -77,7 +67,6 @@
             margin-bottom: 24px;
             letter-spacing: 1.2px;
             box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
-            animation: badgePop 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         h1 {
@@ -87,27 +76,11 @@
             background: linear-gradient(90deg, #fff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
 
-        .form-group {
-            text-align: left;
-            margin-bottom: 24px;
-        }
-        
-        label {
-            font-size: 13px;
-            color: var(--subtle);
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
-            letter-spacing: 0.5px;
-        }
-
-        .select-group {
-            display: flex;
-            gap: 12px;
-        }
+        .form-group { text-align: left; margin-bottom: 24px; }
+        label { font-size: 13px; color: var(--subtle); font-weight: 600; margin-bottom: 10px; display: block; }
+        .select-group { display: flex; gap: 12px; }
 
         select, textarea {
             width: 100%;
@@ -119,14 +92,6 @@
             font-size: 15.5px;
             box-sizing: border-box;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        select:focus, textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
-            transform: translateY(-1px);
         }
 
         .btn {
@@ -136,102 +101,33 @@
             font-weight: 800;
             cursor: pointer;
             border: none;
-            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 16.5px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
         }
 
-        .btn-gen {
-            background: linear-gradient(90deg, var(--accent), #7c3aed);
-            color: white;
-            margin-top: 12px;
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
-        }
-        
-        .btn-gen:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.5);
-        }
-        
-        .btn-gen:disabled {
-            background: #4b2c6d;
-            cursor: wait;
-            opacity: 0.75;
-        }
+        .btn-gen { background: var(--accent); color: white; margin-top: 12px; }
 
         #output-container {
             display: none;
             margin-top: 36px;
             background: rgba(168, 85, 247, 0.06);
-            border: 1px solid rgba(168, 85, 247, 0.18);
             border-radius: 24px;
             padding: 24px;
-            animation: fadeInScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        #output-text {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            min-height: 120px;
         }
 
         .caption-item {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 18px;
             padding: 18px 20px;
             text-align: left;
-            position: relative;
-            overflow: hidden;
-            animation: captionPop 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            opacity: 0;
-        }
-        
-        .caption-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), #c026d3);
-        }
-
-        .caption-text {
-            font-size: 15.5px;
-            line-height: 1.55;
-            color: var(--text);
-            margin-bottom: 14px;
-        }
-
-        .btn-copy {
-            background: rgba(255,255,255,0.95);
-            color: #0f172a;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 9px 18px;
-            border-radius: 12px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        
-        .btn-copy:hover {
-            background: #fff;
-            transform: scale(1.05);
+            margin-bottom: 10px;
         }
 
         #unlock-btn {
             background: linear-gradient(90deg, var(--gold), #fcd34d);
             color: #1e2937;
             margin-top: 32px;
-            font-weight: 800;
-            box-shadow: 0 12px 30px rgba(251, 191, 36, 0.5);
-        }
-        
-        #unlock-btn:hover {
-            transform: translateY(-3px);
         }
 
         .toast {
@@ -239,61 +135,16 @@
             top: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255,255,255,0.95);
-            color: #0f172a;
+            background: white;
+            color: black;
             padding: 16px 32px;
             border-radius: 20px;
             font-weight: 800;
-            font-size: 15px;
             display: none;
             z-index: 10000;
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.6);
-            animation: toastSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.92); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes captionPop {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
-        }
-        
-        @keyframes badgePop {
-            0% { transform: scale(0.3) rotate(-12deg); opacity: 0; }
-            60% { transform: scale(1.15) rotate(8deg); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-150%); }
-            50% { transform: translateX(150%); }
-            100% { transform: translateX(-150%); }
-        }
-        
-        @keyframes toastSlide {
-            from { transform: translate(-50%, -30px); opacity: 0; }
-            to { transform: translate(-50%, 0); opacity: 1; }
-        }
-
-        .caption-list {
-            /* For future use if needed */
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -316,140 +167,73 @@
             <select id="platform">
                 <option value="TikTok">TikTok</option>
                 <option value="Instagram">Instagram</option>
-                <option value="LinkedIn">LinkedIn</option>
             </select>
         </div>
     </div>
 
     <div class="form-group">
-        <label>What is your video about?</label>
-        <textarea id="topic" rows="3" placeholder="e.g. My 7-figure business journey..."></textarea>
+        <label>Video Topic</label>
+        <textarea id="topic" rows="3" placeholder="e.g. My 7-figure journey..."></textarea>
     </div>
 
     <button id="gen-btn" class="btn btn-gen" onclick="generate()">Generate Captions</button>
 
     <div id="output-container">
         <div id="output-text"></div>
-        <button class="btn btn-copy" onclick="copyAll()" style="margin-top: 20px;">📋 Copy All Captions</button>
+        <button class="btn" style="background:white; color:black; margin-top:15px;" onclick="copyAll()">📋 Copy All</button>
     </div>
 
     <button id="unlock-btn" class="btn" onclick="activatePro()">Unlock Pro Hooks — $5</button>
 </div>
 
 <script>
-    // Premium caption templates
     const toneTemplates = {
-        Savage: [
-            "I'm the final boss of {topic}. Bow down. 🔥",
-            "This {topic} energy is illegal in 12 states. 💥",
-            "You couldn't handle my {topic} if it was free. 😤"
-        ],
-        Professional: [
-            "Mastering {topic} with precision and results. 📊",
-            "The blueprint for scaling {topic} exponentially. 📈",
-            "Strategic dominance in the world of {topic}. 🏆"
-        ],
-        Witty: [
-            "My {topic} is so good, it should come with a warning label. ⚠️",
-            "Turning {topic} into pure internet gold. 🪙",
-            "If {topic} had a PhD, it would be from me. 🎓"
-        ]
+        Savage: ["I'm the final boss of {topic}. 🔥", "This {topic} energy is illegal. 💥"],
+        Professional: ["Mastering {topic} with precision. 📊", "The blueprint for {topic}. 📈"],
+        Witty: ["My {topic} needs a warning label. ⚠️", "Turning {topic} into gold. 🪙"]
     };
-
-    function getPlatformEmoji(platform) {
-        const emojis = {
-            'TikTok': '📱',
-            'Instagram': '📸',
-            'LinkedIn': '💼'
-        };
-        return emojis[platform] || '✨';
-    }
 
     function notify(msg) {
         const t = document.getElementById('toast');
         t.innerText = msg;
         t.style.display = 'block';
-        setTimeout(() => {
-            t.style.opacity = '0';
-            setTimeout(() => {
-                t.style.display = 'none';
-                t.style.opacity = '1';
-            }, 400);
-        }, 2600);
+        setTimeout(() => t.style.display = 'none', 2500);
     }
 
     function generate() {
         const btn = document.getElementById('gen-btn');
         const box = document.getElementById('output-container');
         const text = document.getElementById('output-text');
-        
         const tone = document.getElementById('tone').value;
-        const platform = document.getElementById('platform').value;
-        let topic = document.getElementById('topic').value.trim();
-        
-        if (!topic) topic = "this game-changing topic";
+        let topic = document.getElementById('topic').value || "this topic";
 
         btn.disabled = true;
-        btn.innerText = "Crafting Magic... ✨";  
+        btn.innerText = "Crafting... ✨";
         box.style.display = 'none';
-        text.innerHTML = "";
 
         setTimeout(() => {
             btn.disabled = false;
             btn.innerText = "Generate Captions";
             box.style.display = 'block';
-            
-            // Generate 3 premium captions
-            const templates = toneTemplates[tone] || toneTemplates['Savage'];
-            const captions = templates.map((template, index) => {
-                let cap = template.replace('{topic}', `<span style="color: var(--accent); font-weight: 700;">${topic}</span>`);
-                return `${cap} ${getPlatformEmoji(platform)}`;
-            });
-
-            // Build beautiful output
-            let html = '';
-            captions.forEach((cap, index) => {
-                html += `
-                    <div class="caption-item" style="animation-delay: ${index * 120}ms;">
-                        <div class="caption-text">${cap}</div>
-                        <button class="btn btn-copy" onclick="copySingle(this)" style="width: auto; padding: 8px 20px;">Copy</button>
-                    </div>
-                `;
-            });
-            
-            text.innerHTML = html;
-            notify("✨ Captions Ready for the Feed");
-            
-        }, 1450);
-    }
-
-    function copySingle(btn) {
-        const captionText = btn.parentElement.querySelector('.caption-text').innerText;
-        navigator.clipboard.writeText(captionText).then(() => {
-            notify("✅ Caption Copied");
-        });
+            text.innerHTML = toneTemplates[tone].map(cap => `
+                <div class="caption-item">
+                    <div class="caption-text">${cap.replace('{topic}', topic)}</div>
+                </div>
+            `).join('');
+            notify("✨ Ready!");
+        }, 1200);
     }
 
     function copyAll() {
-        const items = document.querySelectorAll('.caption-text');
-        let allText = Array.from(items).map(item => item.innerText).join('\n\n');
-        navigator.clipboard.writeText(allText).then(() => {
-            notify("📋 All Captions Copied!");
-        });
+        const caps = document.querySelectorAll('.caption-text');
+        const allText = Array.from(caps).map(c => c.innerText).join('\n');
+        navigator.clipboard.writeText(allText);
+        notify("📋 Copied!");
     }
 
     function activatePro() {
-        document.getElementById('unlock-btn').style.display = 'none';
-        const badge = document.getElementById('pro-badge');
-        badge.style.display = 'inline-block';
-        
-        // Premium unlock animation + toast
-        notify("🎉 Pro Features Unlocked Forever");
-        
-        // Subtle confetti effect (simple)
-        setTimeout(() => {
-            notify("🌟 Now generating even spicier captions");
-        }, 1800);
+        // DIRECT REDIRECT TO YOUR STRIPE LINK
+        window.location.href = 'https://buy.stripe.com/3cI00k3Rf8NZ8N79o19bO01';
     }
 </script>
 
