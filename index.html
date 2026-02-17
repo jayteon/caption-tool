@@ -149,7 +149,7 @@
 </head>
 <body>
 
-<div id="toast" class="toast">Action Successful </div>
+<div id="toast" class="toast">Action Successful ✨</div>
 
 <div class="container">
     <div class="brand-logo">⚡</div>
@@ -160,9 +160,9 @@
         <label>Select Tone & Platform</label>
         <div class="select-group">
             <select id="tone">
-                <option value="Savage">Savage </option>
-                <option value="Professional">Professional</option>
-                <option value="Witty">Witty</option>
+                <option value="Savage">Savage 🔥</option>
+                <option value="Professional">Professional 💼</option>
+                <option value="Witty">Witty ✨</option>
             </select>
             <select id="platform">
                 <option value="TikTok">TikTok</option>
@@ -183,14 +183,14 @@
         <button class="btn" style="background:white; color:black; margin-top:15px;" onclick="copyAll()">📋 Copy All</button>
     </div>
 
-    <button id="unlock-btn" class="btn" onclick="activatePro()">Unlock Pro Hooks $5</button>
+    <button id="unlock-btn" class="btn" onclick="activatePro()">Unlock Pro Hooks — $5</button>
 </div>
 
 <script>
     const toneTemplates = {
-        Savage: ["I'm the final boss of {topic}.", "This {topic} energy is illegal."],
-        Professional: ["Mastering {topic} with precision.", "The blueprint for {topic}."],
-        Witty: ["My {topic} needs a warning label.!", "Turning {topic} into gold."]
+        Savage: ["I'm the final boss of {topic}. 🔥", "This {topic} energy is illegal. 💥"],
+        Professional: ["Mastering {topic} with precision. 📊", "The blueprint for {topic}. 📈"],
+        Witty: ["My {topic} needs a warning label. ⚠️", "Turning {topic} into gold. 🪙"]
     };
 
     function notify(msg) {
@@ -208,7 +208,7 @@
         let topic = document.getElementById('topic').value || "this topic";
 
         btn.disabled = true;
-        btn.innerText = "Crafting... ++";
+        btn.innerText = "Crafting... ✨";
         box.style.display = 'none';
 
         setTimeout(() => {
@@ -220,7 +220,7 @@
                     <div class="caption-text">${cap.replace('{topic}', topic)}</div>
                 </div>
             `).join('');
-            notify("Ready!");
+            notify("✨ Ready!");
         }, 1200);
     }
 
@@ -228,15 +228,12 @@
         const caps = document.querySelectorAll('.caption-text');
         const allText = Array.from(caps).map(c => c.innerText).join('\n');
         navigator.clipboard.writeText(allText);
-        notify(" Copied!");
+        notify("📋 Copied!");
     }
 
     function activatePro() {
-        // Updated PayPal link from your latest version
-        window.open("https://paypal.me/DailyOffer/5", "_blank");
-        
-        // Original Stripe redirect
-        window.location.href = 'https://buy.stripe.com/3cl00k3Rf8NZ8N79019b001';
+        // DIRECT REDIRECT TO YOUR STRIPE LINK
+        window.location.href = 'https://buy.stripe.com/3cI00k3Rf8NZ8N79o19bO01';
     }
 </script>
 
