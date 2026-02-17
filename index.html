@@ -3,31 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Caption Builder</title>
+    <title>Pro Caption Builder | Premium</title>
     <style>
-        :root { --p: #a855f7; --bg: #111827; --card: #1e293b; }
-        body { font-family: sans-serif; background: var(--bg); color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 90%; max-width: 400px; text-align: center; border: 1px solid #334155; }
-        h1 { color: #00d4ff; font-size: 1.5rem; margin-bottom: 20px; }
-        textarea { width: 100%; height: 100px; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 10px; padding: 10px; box-sizing: border-box; margin-bottom: 15px; }
-        .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 10px; transition: 0.2s; }
-        .gen-btn { background: #00bcd4; color: #111; }
-        .pro-section { margin-top: 25px; border-top: 1px solid #334155; padding-top: 20px; }
-        .pro-label { font-size: 10px; color: #94a3b8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .pay-btn { background: #a855f7; color: white; text-decoration: none; display: block; padding: 14px; border-radius: 10px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); }
-        .pay-btn:active { transform: scale(0.97); }
+        :root {
+            --bg: #0f0f12;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --accent: #a855f7; /* Electric Purple */
+            --gold: #f59e0b;
+            --text: #ffffff;
+            --glass: blur(12px);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b, var(--bg));
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glass-container {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass);
+            -webkit-backdrop-filter: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            display: none;
+            background: var(--gold);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 auto 1rem;
+            width: fit-content;
+        }
+
+        label { font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; display: block; }
+
+        select, textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: white;
+            padding: 12px;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--accent);
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:active { transform: scale(0.98); }
+
+        #output-box {
+            margin-top: 1.5rem;
+            padding: 15px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 12px;
+            min-height: 80px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-left: 4px solid var(--accent);
+            display: none;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: none;
+            z-index: 100;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Caption Builder</h1>
-        <textarea placeholder="Paste your video description here..."></textarea>
-        <button class="btn gen-btn">Generate Captions</button>
+
+<div class="glass-container">
+    <div id="pro-badge" class="badge">Verified Pro</div>
+    <h1>Caption Builder</h1>
+    
+    <label>Platform Preset</label>
+    <select id="platform">
+        <option value="TikTok">TikTok</option>
+        <option value="Instagram">Instagram</option>
+        <option value="LinkedIn">LinkedIn</option>
+    </select>
+
+    <label>Tone of Voice</label>
+    <select id="tone">
+        <option value="Savage">Savage</option>
+        <option value="Professional">Professional</option>
+        <option value="Witty">Witty</option>
+    </select>
+
+    <label>Video Topic</label>
+    <textarea id="topic" rows="3" placeholder="e.g. My morning gym routine..."></textarea>
+
+    <button class="btn-primary" onclick="generateCaption()">Generate Captions</button>
+    
+    <div id="output-box" onclick="copyToClipboard()"></div>
+
+    <button id="unlock-btn" class="btn-primary" style="background: var(--gold); margin-top: 10px;" onclick="simulatePayment()">Unlock Pro Hooks - $5</button>
+</div>
+
+<div id="toast" class="toast">Copied to Clipboard!</div>
+
+<script>
+    const megaDatabase = {
+        Savage: ["I don't compete, I dominate. 💅", "Your opinion wasn't in the blueprint. 🏗️", "Stay mad or stay focused. Your choice."],
+        Professional: ["Scaling systems for maximum impact. 📈", "Consistency is the foundation of growth. 🏢", "Deep work yields elite results."],
+        Witty: ["I followed my heart and it led me to the fridge. 🍕", "Adulting is 0/10 stars. Do not recommend.", "I’m not lazy, I’m on energy saving mode."]
+    };
+
+    function generateCaption() {
+        const tone = document.getElementById('tone').value;
+        const platform = document.getElementById('platform').value;
+        const output = document.getElementById('output-box');
         
-        <div class="pro-section">
-            <span class="pro-label">Premium Feature</span>
-            <a href="https://buy.stripe.com/5kQdRa2NbaW70gBas59bO00" target="_blank" class="pay-btn">Unlock Pro Hooks - $5</a>
-        </div>
-    </div>
+        output.style.display = 'block';
+        output.innerHTML = "";
+        
+        const rawText = `[${platform}] ${megaDatabase[tone][Math.floor(Math.random() * 3)]}`;
+        
+        // Typewriter Effect
+        let i = 0;
+        function type() {
+            if (i < rawText.length) {
+                output.innerHTML += rawText.charAt(i);
+                i++;
+                setTimeout(type, 30);
+            }
+        }
+        type();
+    }
+
+    function copyToClipboard() {
+        const text = document.getElementById('output-box').innerText;
+        navigator.clipboard.writeText(text);
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2000);
+    }
+
+    function simulatePayment() {
+        // Dynamic Pro Status Logic
+        document.getElementById('unlock-btn').style.display = 'none';
+        document.getElementById('pro-badge').style.display = 'block';
+        const toast = document.getElementById('toast');
+        toast.innerHTML = "Payment Successful! Pro Unlocked.";
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 3000);
+    }
+</script>
+
 </body>
 </html>
