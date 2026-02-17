@@ -3,179 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Caption | Premium Hub</title>
+    <title>Pro Caption AI | Premium</title>
     <style>
         :root {
-            --bg: #050505;
-            --card: rgba(20, 20, 25, 0.8);
+            --bg: #0a0a0c;
+            --card: rgba(20, 20, 25, 0.9);
             --accent: #a855f7;
             --gold: #fbbf24;
-            --glass: blur(15px);
+            --glass: blur(20px);
         }
 
         body {
             margin: 0;
             background: var(--bg);
             color: white;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
         }
 
         .container {
             background: var(--card);
             backdrop-filter: var(--glass);
+            -webkit-backdrop-filter: var(--glass);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            padding: 30px;
+            border-radius: 32px;
+            padding: 35px;
             width: 90%;
-            max-width: 400px;
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+            max-width: 420px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(168, 85, 247, 0.1);
             text-align: center;
-            animation: slideIn 0.6s ease-out;
+            animation: slideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .brand-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px var(--accent));
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #6366f1);
+            border-radius: 18px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
         }
 
         #pro-badge {
             display: none;
-            background: linear-gradient(45deg, var(--gold), #f59e0b);
+            background: var(--gold);
             color: black;
-            font-weight: 800;
-            padding: 5px 15px;
+            font-weight: 900;
+            padding: 6px 16px;
             border-radius: 50px;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
-        h1 { font-size: 22px; margin-bottom: 25px; letter-spacing: -0.5px; }
+        h1 { font-size: 24px; margin-bottom: 30px; font-weight: 800; }
 
-        .form-group { text-align: left; margin-bottom: 15px; }
-        label { font-size: 12px; color: #888; margin-bottom: 6px; display: block; }
+        .form-group { text-align: left; margin-bottom: 20px; }
+        label { font-size: 12px; color: #94a3b8; font-weight: 600; margin-bottom: 8px; display: block; }
 
         select, textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #333;
-            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #334155;
+            border-radius: 16px;
             color: white;
-            padding: 12px;
-            font-size: 14px;
+            padding: 14px;
+            font-size: 15px;
             box-sizing: border-box;
-            transition: 0.3s;
+            outline: none;
+            transition: border-color 0.3s;
         }
+
+        select:focus, textarea:focus { border-color: var(--accent); }
 
         .btn {
             width: 100%;
-            padding: 15px;
-            border-radius: 14px;
-            font-weight: bold;
+            padding: 18px;
+            border-radius: 16px;
+            font-weight: 800;
             cursor: pointer;
             border: none;
-            transition: 0.3s;
-            margin-top: 10px;
+            transition: all 0.3s;
+            font-size: 16px;
         }
 
-        .btn-gen { background: var(--accent); color: white; }
-        .btn-gen:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-gen { background: var(--accent); color: white; margin-top: 10px; }
+        .btn-gen:disabled { background: #4b2c6d; cursor: wait; opacity: 0.7; }
 
-        /* Output Container */
         #output-container {
             display: none;
-            margin-top: 25px;
-            background: rgba(0,0,0,0.5);
-            border: 1px dashed #444;
-            border-radius: 16px;
+            margin-top: 30px;
+            background: rgba(168, 85, 247, 0.05);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
             padding: 20px;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.5s ease;
         }
 
-        #output-text { font-size: 15px; line-height: 1.6; text-align: left; min-height: 50px; }
+        #output-text { font-size: 16px; line-height: 1.6; text-align: left; min-height: 60px; }
 
-        .btn-copy { background: white; color: black; font-size: 13px; margin-top: 15px; }
+        .btn-copy { background: #fff; color: #000; font-size: 14px; margin-top: 15px; }
+        .btn-copy:hover { background: #e2e8f0; }
 
-        /* Unlock Section */
-        #unlock-btn { background: var(--gold); color: black; margin-top: 20px; }
+        #unlock-btn { background: var(--gold); color: black; margin-top: 25px; }
 
-        /* Toast Notification */
         .toast {
             position: fixed;
             top: 20px;
-            background: var(--gold);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
             color: black;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 700;
             display: none;
-            z-index: 999;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div id="toast" class="toast">Success!</div>
+<div id="toast" class="toast">Action Successful</div>
 
 <div class="container">
-    <div class="brand-icon">⚡</div>
+    <div class="brand-logo">⚡</div>
     <div id="pro-badge">Pro Verified</div>
     <h1>Pro Caption AI</h1>
 
     <div class="form-group">
-        <label>Platform & Tone</label>
+        <label>Select Tone & Platform</label>
         <div style="display: flex; gap: 10px;">
+            <select id="tone">
+                <option value="Savage">Savage</option>
+                <option value="Professional">Professional</option>
+                <option value="Witty">Witty</option>
+            </select>
             <select id="platform">
                 <option>TikTok</option>
-                <option>IG Reel</option>
-                <option>YouTube</option>
-            </select>
-            <select id="tone">
-                <option>Savage</option>
-                <option>Witty</option>
-                <option>Elite</option>
+                <option>Instagram</option>
+                <option>LinkedIn</option>
             </select>
         </div>
     </div>
 
     <div class="form-group">
-        <label>Video Context</label>
-        <textarea id="topic" rows="3" placeholder="Describe your video..."></textarea>
+        <label>What is your video about?</label>
+        <textarea id="topic" rows="3" placeholder="e.g. My business growth story..."></textarea>
     </div>
 
     <button id="gen-btn" class="btn btn-gen" onclick="generate()">Generate Captions</button>
 
     <div id="output-container">
         <div id="output-text"></div>
-        <button class="btn btn-copy" onclick="copyText()">Copy to Clipboard</button>
+        <button class="btn btn-copy" onclick="copyContent()">Copy to Clipboard</button>
     </div>
 
-    <button id="unlock-btn" class="btn" onclick="handlePayment()">Unlock Pro Hooks — $5</button>
+    <button id="unlock-btn" class="btn" onclick="activatePro()">Unlock Pro Hooks — $5</button>
 </div>
 
 <script>
-    const db = {
-        Savage: "I’m not a backup plan, and I’m definitely not a second choice. 💅🔥",
-        Witty: "I followed my heart and it led me to the bank. 🏦✨",
-        Elite: "Success isn't owned, it's leased. And rent is due every day. 📈👑"
+    const database = {
+        Savage: "I’m the vibe you can’t handle. Keep watching. 💅🔥",
+        Professional: "Efficiency is the only competitive advantage that lasts. 📈💼",
+        Witty: "I’m not arguing, I’m just explaining why I’m right. 🎤✨"
     };
 
-    function showToast(msg) {
+    function notify(msg) {
         const t = document.getElementById('toast');
         t.innerText = msg;
         t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 2500);
+        setTimeout(() => t.style.display = 'none', 3000);
     }
 
     function generate() {
@@ -185,7 +195,7 @@
         const tone = document.getElementById('tone').value;
 
         btn.disabled = true;
-        btn.innerText = "Thinking..."; // Processing state
+        btn.innerText = "Generating..."; 
         box.style.display = 'none';
         text.innerHTML = "";
 
@@ -194,32 +204,32 @@
             btn.innerText = "Generate Captions";
             box.style.display = 'block';
             
-            // Typewriter micro-animation
             let i = 0;
-            let str = db[tone];
+            let str = database[tone];
             function type() {
                 if (i < str.length) {
                     text.innerHTML += str.charAt(i);
                     i++;
-                    setTimeout(type, 25);
+                    setTimeout(type, 30);
                 }
             }
             type();
-            showToast("Caption Generated!");
+            notify("Caption Generated!");
         }, 1200);
     }
 
-    function copyText() {
-        const val = document.getElementById('output-text').innerText;
-        navigator.clipboard.writeText(val);
-        showToast("Copied to Clipboard!"); // Visual feedback
+    function copyContent() {
+        const content = document.getElementById('output-text').innerText;
+        if (!content) return;
+        navigator.clipboard.writeText(content);
+        notify("Copied to Clipboard!");
     }
 
-    function handlePayment() {
-        // Payment State Integration
+    function activatePro() {
         document.getElementById('unlock-btn').style.display = 'none';
-        document.getElementById('pro-badge').style.display = 'block';
-        showToast("Pro Status Activated!");
+        const badge = document.getElementById('pro-badge');
+        badge.style.display = 'inline-block';
+        notify("Pro Features Unlocked!");
     }
 </script>
 
